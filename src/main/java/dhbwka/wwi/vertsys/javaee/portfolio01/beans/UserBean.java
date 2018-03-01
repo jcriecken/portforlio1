@@ -50,7 +50,7 @@ public class UserBean {
         }
 
         User user = new User(username, password);
-        user.addToGroup("todo-app-user");
+        user.addToGroup("Login-Group");
         em.persist(user);
     }
 

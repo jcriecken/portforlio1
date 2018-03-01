@@ -74,7 +74,7 @@
                     </label>  
 
                     <div class="column">
-                    <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
+                    <input type="text" name="signup_postalCode" value="${signup_form.values["signup_index"][0]}">
                     <input type="text" name="signup_city" value="${signup_form.values["signup_city"][0]}">
 
                    
