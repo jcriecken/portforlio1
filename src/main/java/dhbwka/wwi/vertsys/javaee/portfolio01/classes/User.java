@@ -91,6 +91,10 @@ public class User implements Serializable {
     }
     //</editor-fold>
 
+    public User(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
     public String getUsername() {
         return username;
