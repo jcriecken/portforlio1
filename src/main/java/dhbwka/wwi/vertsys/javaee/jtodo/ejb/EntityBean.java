@@ -21,7 +21,7 @@ import javax.persistence.PersistenceContext;
  * @param <EntityId> Datentyp oder Klasse für die Schlüsselwerte
  */
 public abstract class EntityBean<Entity, EntityId> {
-  //Hallo das ist eine Entity Bean  
+  //Hallo das ist eine Entity Bean 2 
 
     @PersistenceContext
     EntityManager em;
