@@ -58,6 +58,19 @@
                         </c:forEach>
                     </select>
                 </div>
+                
+                <label for="task_category">Art des Angebots:</label>
+                <div class="side-by-side">
+                    <select name="task_category">
+                        <option value=""></option>
+
+                        <c:forEach items="${angebotstyp}" var="angebotstyp">
+                            <option value="${angebotstyp.id}" ${task_form.values["task_category"][0] == category.id ? 'selected' : ''}>
+                                <c:out value="${category.name}" />
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
 
                 <label for="task_due_date">
                     Fällig am:

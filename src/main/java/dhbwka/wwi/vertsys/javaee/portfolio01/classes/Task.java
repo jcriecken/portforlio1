@@ -64,7 +64,7 @@ public class Task implements Serializable {
     private TaskStatus status = TaskStatus.OPEN;
 
     @ManyToOne
-    private Angebotstyp angebotstyp;
+    private AngebotsTyp angebotstyp;
 
     private double preis;
 

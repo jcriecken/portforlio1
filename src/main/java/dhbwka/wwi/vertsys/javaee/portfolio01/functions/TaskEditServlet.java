@@ -13,6 +13,8 @@ import dhbwka.wwi.vertsys.javaee.portfolio01.beans.CategoryBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.beans.TaskBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.beans.UserBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.beans.ValidationBean;
+import dhbwka.wwi.vertsys.javaee.portfolio01.beans.PreisTypBean;
+import dhbwka.wwi.vertsys.javaee.portfolio01.beans.AngebotsTypBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Task;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.TaskStatus;
 import java.io.IOException;
@@ -47,6 +49,12 @@ public class TaskEditServlet extends HttpServlet {
 
     @EJB
     ValidationBean validationBean;
+    
+    @EJB
+    PreisTypBean preistypbean;
+    
+    @EJB
+    AngebotsTypBean angebotstypbean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
