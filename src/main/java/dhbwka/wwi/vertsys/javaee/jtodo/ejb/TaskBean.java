@@ -8,7 +8,7 @@
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 package dhbwka.wwi.vertsys.javaee.jtodo.ejb;
-
+//Test Kommentar
 import dhbwka.wwi.vertsys.javaee.jtodo.jpa.Category;
 import dhbwka.wwi.vertsys.javaee.jtodo.jpa.Task;
 import dhbwka.wwi.vertsys.javaee.jtodo.jpa.TaskStatus;
@@ -18,7 +18,7 @@ import javax.ejb.Stateless;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
+//Test
 /**
  * Einfache EJB mit den üblichen CRUD-Methoden für Aufgaben
  */
