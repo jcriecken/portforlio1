@@ -1,3 +1,5 @@
 
 *.java
 src/main/java/dhbwka/wwi/vertsys/javaee/jtodo/ejb/EntityBean.java
+!/src/main/java/dhbwka/wwi/vertsys/javaee/portfolio01/beans/PreisTypBean.java
+!/src/main/java/dhbwka/wwi/vertsys/javaee/portfolio01/classes/PreisTyp.java
