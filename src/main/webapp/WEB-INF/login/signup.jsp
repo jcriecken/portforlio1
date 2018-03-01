@@ -72,7 +72,7 @@
                         Postleitzahl und Ort:
                         <span class="required">*</span>
                     </label>  
-                    <div>
+                    <div class="column">
                     <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
                     <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
                     </div>
