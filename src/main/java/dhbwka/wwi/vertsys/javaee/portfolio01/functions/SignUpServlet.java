@@ -80,7 +80,9 @@ public class SignUpServlet extends HttpServlet {
         if (errors.isEmpty()) {
             try {
                 this.userBean.signup(username, password1, realname, address, postalCode, city);
-            } catch (UserBean.UserAlreadyExistsException ex) {
+           // } catch (UserBean.UserAlreadyExistsException ex) {
+            } catch (Exception ex) {
+                System.out.println("fehler: "+ex);
                 errors.add(ex.getMessage());
             }
         }
