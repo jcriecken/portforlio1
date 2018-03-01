@@ -7,7 +7,7 @@
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-package dhbwka.wwi.vertsys.javaee.jtodo.web;
+package dhbwka.wwi.vertsys.javaee.portfolio01.functions;
 
 import java.util.ArrayList;
 import java.util.HashMap;

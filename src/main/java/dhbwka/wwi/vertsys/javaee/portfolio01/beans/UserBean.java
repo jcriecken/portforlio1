@@ -7,9 +7,9 @@
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-package dhbwka.wwi.vertsys.javaee.jtodo.ejb;
+package dhbwka.wwi.vertsys.javaee.portfolio01.beans;
 
-import dhbwka.wwi.vertsys.javaee.jtodo.jpa.User;
+import dhbwka.wwi.vertsys.javaee.portfolio01.classes.User;
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJBContext;

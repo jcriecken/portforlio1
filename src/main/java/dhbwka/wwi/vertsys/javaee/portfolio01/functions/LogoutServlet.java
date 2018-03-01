@@ -7,7 +7,7 @@
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-package dhbwka.wwi.vertsys.javaee.jtodo.web;
+package dhbwka.wwi.vertsys.javaee.portfolio01.functions;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet für die Startseite /index.html. Hier wird der Anwender einfach auf
- * die Übersichtsseite weitergeleitet. Falls er noch nicht eingeloggt ist,
- * sorgt der Applikationsserver von alleine dafür, zunächst die Loginseite
- * anzuzeigen.
+ * Servlet, dass den Anwender ausloggt (die Session beendet) und ihn dann
+ * auf die Startseite weiterleitet.
  */
-@WebServlet(urlPatterns = {"/index.html"})
-public class IndexServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/logout/"})
+public class LogoutServlet extends HttpServlet {
     
+    public static final String URL = "/logout/";
+
     /**
      * GET-Anfrage: Seite anzeigen
      * 
@@ -36,7 +36,8 @@ public class IndexServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws IOException, ServletException {
-        response.sendRedirect(WebUtils.appUrl(request, "/app/tasks/"));
+        request.getSession().invalidate();
+        response.sendRedirect(WebUtils.appUrl(request, "/"));
     }
 
 }

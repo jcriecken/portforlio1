@@ -7,11 +7,11 @@
  * Dieser Quellcode ist lizenziert unter einer
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
-package dhbwka.wwi.vertsys.javaee.jtodo.ejb;
+package dhbwka.wwi.vertsys.javaee.portfolio01.beans;
 //Test Kommentar
-import dhbwka.wwi.vertsys.javaee.jtodo.jpa.Category;
-import dhbwka.wwi.vertsys.javaee.jtodo.jpa.Task;
-import dhbwka.wwi.vertsys.javaee.jtodo.jpa.TaskStatus;
+import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Category;
+import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Task;
+import dhbwka.wwi.vertsys.javaee.portfolio01.classes.TaskStatus;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
