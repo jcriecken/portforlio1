@@ -148,7 +148,7 @@ public class TaskEditServlet extends HttpServlet {
         
          if (taskPreisTyp != null && !taskPreisTyp.trim().isEmpty()){
             try {
-                task.setAngebotstyp(this.angebotstypBean.findById(Long.parseLong(taskAngebotsTyp)));
+                task.setPreistyp(this.preistypBean.findById(Long.parseLong(taskPreisTyp)));
             } catch (NumberFormatException ex) {
                 // Ungültige oder keine ID mitgegeben
             }
