@@ -55,7 +55,7 @@ public class User implements Serializable {
 
     @ElementCollection
     @CollectionTable(
-            name = "LOGIN-GROUP",
+            name = "jtodo_user_group",
             joinColumns = @JoinColumn(name = "USERNAME")
     )
     @Column(name = "GROUPNAME")

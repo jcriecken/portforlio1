@@ -54,7 +54,7 @@ public class UserBean {
         }
 
         User user = new User(username, password, realname, address, postalCode, city);
-        user.addToGroup("Login-Group");
+        user.addToGroup("LoginGroup");
         em.persist(user);
     }
 
