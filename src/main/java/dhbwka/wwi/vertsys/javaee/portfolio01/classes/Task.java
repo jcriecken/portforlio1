@@ -69,7 +69,7 @@ public class Task implements Serializable {
     private double preis;
 
     @ManyToOne
-    private Preistyp preistyp;
+    private PreisTyp preistyp;
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Task() {
