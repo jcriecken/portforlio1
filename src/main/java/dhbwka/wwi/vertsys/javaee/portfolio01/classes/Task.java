@@ -75,13 +75,16 @@ public class Task implements Serializable {
     public Task() {
     }
 
-    public Task(User owner, Category category, String shortText, String longText, Date dueDate, Time dueTime) {
+    public Task(Angebotstyp angebotstyp,Preistyp preistyp, Double preis, User owner, Category category, String shortText, String longText, Date dueDate, Time dueTime) {
         this.owner = owner;
         this.category = category;
         this.shortText = shortText;
         this.longText = longText;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
+        this.angebotstyp= angebotstyp:
+        this.preis = preis;
+        this.preistyp = preistyp;
     }
     //</editor-fold>
 
