@@ -55,11 +55,17 @@ public class User implements Serializable {
 
     @ElementCollection
     @CollectionTable(
-            name = "JTODO_USER_GROUP",
+            name = "LOGIN-GROUP",
             joinColumns = @JoinColumn(name = "USERNAME")
     )
     @Column(name = "GROUPNAME")
     List<String> groups = new ArrayList<>();
+    
+    @Column (name = "signup_realname")
+    List<String> signup_names = new ArrayList<>();
+    
+    @Column (name = "signup_adress")
+    List<String> signup_adresses = new ArrayList();
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     List<Task> tasks = new ArrayList<>();
