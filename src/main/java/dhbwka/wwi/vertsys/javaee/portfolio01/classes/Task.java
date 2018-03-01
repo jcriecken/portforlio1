@@ -48,7 +48,7 @@ public class Task implements Serializable {
     @NotNull(message = "Die Bezeichnung darf nicht leer sein.")
     @Size(min = 1, max = 50, message = "Die Bezeichnung muss zwischen ein und 50 Zeichen lang sein.")
     private String shortText;
-   
+
     @Lob
     @NotNull
     private String longText;
@@ -62,16 +62,14 @@ public class Task implements Serializable {
     @Enumerated(EnumType.STRING)
     @NotNull
     private TaskStatus status = TaskStatus.OPEN;
-    
+
     @ManyToOne
     private Angebotstyp angebotstyp;
-    
+
     private double preis;
-    
+
     @NotNull
     private String Preistyp;
-    
-    
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Task() {
@@ -89,8 +87,6 @@ public class Task implements Serializable {
 
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
     
-    //</editor-fold>
-
     public long getId() {
         return id;
     }
@@ -178,5 +174,5 @@ public class Task implements Serializable {
     public void setPreistyp(String Preistyp) {
         this.Preistyp = Preistyp;
     }
-
+//</editor-fold>
 }
