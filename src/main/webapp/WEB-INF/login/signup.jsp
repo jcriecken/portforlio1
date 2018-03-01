@@ -72,16 +72,12 @@
                         Postleitzahl und Ort:
                         <span class="required">*</span>
                     </label>  
-<<<<<<< HEAD
+
                     <div class="column">
                     <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
                     <input type="text" name="signup_city" value="${signup_form.values["signup_city"][0]}">
-=======
-                    <div>
-                        <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
-                        <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
->>>>>>> 7e5c66b259350aea11299886d766bdd875d7ac48
-                    </div>
+
+                   
                     
                     <label for="signup_telephone">
                         Telefonnummer:
