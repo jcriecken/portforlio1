@@ -8,7 +8,7 @@
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 package dhbwka.wwi.vertsys.javaee.jtodo.ejb;
-
+//Test Kommentar
 import dhbwka.wwi.vertsys.javaee.jtodo.jpa.Category;
 import dhbwka.wwi.vertsys.javaee.jtodo.jpa.Task;
 import dhbwka.wwi.vertsys.javaee.jtodo.jpa.TaskStatus;
