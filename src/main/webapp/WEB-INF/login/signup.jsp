@@ -55,7 +55,27 @@
                         <span class="required">*</span>
                     </label>
                     <input type="password" name="signup_password2" value="${signup_form.values["signup_password2"][0]}">
-
+                    
+                    <label for="signup_realname" >
+                        Vor- und Nachname:
+                        <span class="required">*</span>
+                    </label>
+                    <input type="text" name="signup_realname" value="${signup_form.values["signup_realname"][0]}">
+                    
+                    <label for="signup_adress">
+                        Straße und Hausnummer:
+                        <span class="required">*</span>
+                     </label>   
+                    <input type="text" name="signup_adress" value="${signup_form.values["signup_adress"][0]}">
+                    
+                    <label for="signup_index">
+                        Postleitzahl und Ort:
+                        <span class="required">*</span>
+                    </label>  
+                    <div>
+                    <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
+                    <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
+                    </div>
                     <%-- Button zum Abschicken --%>
                     <button class="icon-pencil" type="submit">
                         Registrieren
