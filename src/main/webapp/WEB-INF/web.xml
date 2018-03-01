@@ -41,7 +41,7 @@
             Seiten aufrufen zu können.
         -->
         <auth-constraint>
-            <role-name>todo-app-user</role-name>
+            <role-name>login-group</role-name>
         </auth-constraint>
         
         <!--
