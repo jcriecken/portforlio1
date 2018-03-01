@@ -62,20 +62,22 @@
                     </label>
                     <input type="text" name="signup_realname" value="${signup_form.values["signup_realname"][0]}">
                     
-                    <label for="signup_adress">
+                    <label for="signup_address1">
                         Straße und Hausnummer:
                         <span class="required">*</span>
                      </label>   
-                    <input type="text" name="signup_adress" value="${signup_form.values["signup_adress"][0]}">
+                    <input type="text" name="signup_address" value="${signup_form.values["signup_address"][0]}">
                     
-                    <label for="signup_index">
+                    <label for="signup_address2">
                         Postleitzahl und Ort:
                         <span class="required">*</span>
                     </label>  
-                    <div>
-                        <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
-                        <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
-                    </div>
+
+                    <div class="column">
+                    <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
+                    <input type="text" name="signup_city" value="${signup_form.values["signup_city"][0]}">
+
+                   
                     
                     <label for="signup_telephone">
                         Telefonnummer:
