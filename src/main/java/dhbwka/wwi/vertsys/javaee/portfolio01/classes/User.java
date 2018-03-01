@@ -62,10 +62,16 @@ public class User implements Serializable {
     List<String> groups = new ArrayList<>();
     
     @Column (name = "signup_realname")
-    List<String> signup_names = new ArrayList<>();
+    private String realName = "";
     
     @Column (name = "signup_adress")
-    List<String> signup_adresses = new ArrayList();
+    private String adress = "";
+    
+    @Column (name = "signup_plz")
+    private String postalCode = ""; 
+    
+    @Column (name = "signup_city")
+    private String city = "";
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     List<Task> tasks = new ArrayList<>();
@@ -74,10 +80,14 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, String realName, String adress, String postalCode, String city) {
         this.username = username;
         this.password = password;
         this.passwordHash = this.hashPassword(password);
+        this.realName = realName;
+        this.adress = adress;
+        this.postalCode = postalCode;
+        this.city = city;
     }
     //</editor-fold>
 
