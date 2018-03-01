@@ -59,9 +59,9 @@
                     </select>
                 </div>
                 
-                <label for="task_category">Art des Angebots:</label>
+                <label for="task_angebotstyp">Art des Angebots:</label>
                 <div class="side-by-side">
-                    <select name="task_category">
+                    <select name="task_angebottyp">
                         <option value=""></option>
 
                         <c:forEach items="${angebotstyp}" var="angebotstyp">
@@ -108,6 +108,26 @@
                 </label>
                 <div class="side-by-side">
                     <textarea name="task_long_text"><c:out value="${task_form.values['task_long_text'][0]}"/></textarea>
+                </div>
+                
+                <label for="task_preistyp">Angebotsart</label>
+                <div class="side-by-side">
+                    <select name="task_preistyp">
+                        <option value=""></option>
+
+                        <c:forEach items="${preistyp}" var="angebotstyp">
+                            <option value="${preistyp.id}" ${task_form.values["task_preistyp"][0] == preistyp.id ? 'selected' : ''}>
+                                <c:out value="${preistyp.name}" />
+                            </option>
+                        </c:forEach>
+                    </select>
+                </div>
+                
+                <label for="task_preis">
+                    Preis:
+                </label>
+                <div class="side-by-side">
+                    <textarea name="task_preis"><c:out value="${task_form.values['task_preis'][0]}"/></textarea>
                 </div>
 
                 <%-- Button zum Abschicken --%>

@@ -127,6 +127,7 @@ public class TaskEditServlet extends HttpServlet {
         String taskLongText = request.getParameter("task_long_text");        
         String taskAngebotsTyp = request.getParameter("task_angebotstyp");
         String taskPreisTyp = request.getParameter("task_preistyp");
+        String taskPreis = request.getParameter("task_preis");
 
         Task task = this.getRequestedTask(request);
 
@@ -151,7 +152,15 @@ public class TaskEditServlet extends HttpServlet {
                 task.setPreistyp(this.preistypBean.findById(Long.parseLong(taskPreisTyp)));
             } catch (NumberFormatException ex) {
                 // Ungültige oder keine ID mitgegeben
-            }
+            }         
+        }
+         
+         if (taskPreis != null && !taskPreis.trim().isEmpty()){
+            try {
+                task.setPreis(Long.parseLong(taskPreisTyp));
+            } catch (NumberFormatException ex) {
+                // Ungültige oder keine ID mitgegeben
+            }         
         }
 
         Date dueDate = WebUtils.parseDate(taskDueDate);
