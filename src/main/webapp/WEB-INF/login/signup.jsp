@@ -76,6 +76,18 @@
                         <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
                         <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
                     </div>
+                    
+                    <label for="signup_telephone">
+                        Telefonnummer:
+                    </label>
+                    <input type="text" name="signup_telephone" value="${signup_form.values["signup_telephone"][0]}">
+                    
+                     <label for="signup_email">
+                         Email-Adresse:
+                    </label>
+                    <input type="text" name="signup_email" value="${signup_form.values["signup_email"][0]}">
+                   
+                    
                     <%-- Button zum Abschicken --%>
                     <button class="icon-pencil" type="submit">
                         Registrieren
