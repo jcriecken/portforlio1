@@ -49,12 +49,12 @@ public class TaskEditServlet extends HttpServlet {
 
     @EJB
     ValidationBean validationBean;
-    
+
     @EJB
-    PreisTypBean preistypbean;
-    
+    PreisTypBean preistypBean;
+
     @EJB
-    AngebotsTypBean angebotstypbean;
+    AngebotsTypBean angebotstypBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -69,7 +69,7 @@ public class TaskEditServlet extends HttpServlet {
 
         Task task = this.getRequestedTask(request);
         request.setAttribute("edit", task.getId() != 0);
-                                
+
         if (session.getAttribute("task_form") == null) {
             // Keine Formulardaten mit fehlerhaften Daten in der Session,
             // daher Formulardaten aus dem Datenbankobjekt übernehmen
@@ -124,13 +124,31 @@ public class TaskEditServlet extends HttpServlet {
         String taskDueTime = request.getParameter("task_due_time");
         String taskStatus = request.getParameter("task_status");
         String taskShortText = request.getParameter("task_short_text");
-        String taskLongText = request.getParameter("task_long_text");
+        String taskLongText = request.getParameter("task_long_text");        
+        String taskAngebotsTyp = request.getParameter("task_angebotstyp");
+        String taskPreisTyp = request.getParameter("task_preistyp");
 
         Task task = this.getRequestedTask(request);
 
         if (taskCategory != null && !taskCategory.trim().isEmpty()) {
             try {
                 task.setCategory(this.categoryBean.findById(Long.parseLong(taskCategory)));
+            } catch (NumberFormatException ex) {
+                // Ungültige oder keine ID mitgegeben
+            }
+        }
+        
+        if (taskAngebotsTyp != null && !taskAngebotsTyp.trim().isEmpty()) {
+            try {
+                task.setAngebotstyp(this.angebotstypBean.findById(Long.parseLong(taskAngebotsTyp)));
+            } catch (NumberFormatException ex) {
+                // Ungültige oder keine ID mitgegeben
+            }
+        }
+        
+         if (taskPreisTyp != null && !taskPreisTyp.trim().isEmpty()){
+            try {
+                task.setAngebotstyp(this.angebotstypBean.findById(Long.parseLong(taskAngebotsTyp)));
             } catch (NumberFormatException ex) {
                 // Ungültige oder keine ID mitgegeben
             }

@@ -65,8 +65,8 @@
                         <option value=""></option>
 
                         <c:forEach items="${angebotstyp}" var="angebotstyp">
-                            <option value="${angebotstyp.id}" ${task_form.values["task_category"][0] == category.id ? 'selected' : ''}>
-                                <c:out value="${category.name}" />
+                            <option value="${angebotstyp.id}" ${task_form.values["task_angebotstyp"][0] == angebotstyp.id ? 'selected' : ''}>
+                                <c:out value="${angebotstyp.name}" />
                             </option>
                         </c:forEach>
                     </select>
