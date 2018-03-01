@@ -9,7 +9,6 @@
  *
  * @author D067849
  */
- 
 package dhbwka.wwi.vertsys.javaee.portfolio01.classes;
 
 import java.io.Serializable;
@@ -25,7 +24,6 @@ import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @Entity
 public class AngebotsTyp implements Serializable {
 
@@ -38,6 +36,9 @@ public class AngebotsTyp implements Serializable {
 
     @Column(length = 30)
     private String name;
+
+    @OneToMany(mappedBy = "angebotstyp", fetch = FetchType.LAZY)
+    List<Task> tasks = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public AngebotsTyp() {

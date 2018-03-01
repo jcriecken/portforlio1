@@ -63,7 +63,8 @@ public class Task implements Serializable {
     @NotNull
     private TaskStatus status = TaskStatus.OPEN;
     
-    private String Angebotstyp;
+    @ManyToOne
+    private Angebotstyp angebotstyp;
     
     private double preis;
     
@@ -87,6 +88,9 @@ public class Task implements Serializable {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
+    
+    //</editor-fold>
+
     public long getId() {
         return id;
     }
@@ -150,6 +154,29 @@ public class Task implements Serializable {
     public void setStatus(TaskStatus status) {
         this.status = status;
     }
-    //</editor-fold>
+
+    public Angebotstyp getAngebotstyp() {
+        return angebotstyp;
+    }
+
+    public void setAngebotstyp(Angebotstyp angebotstyp) {
+        this.angebotstyp = angebotstyp;
+    }
+
+    public double getPreis() {
+        return preis;
+    }
+
+    public void setPreis(double preis) {
+        this.preis = preis;
+    }
+
+    public String getPreistyp() {
+        return Preistyp;
+    }
+
+    public void setPreistyp(String Preistyp) {
+        this.Preistyp = Preistyp;
+    }
 
 }
