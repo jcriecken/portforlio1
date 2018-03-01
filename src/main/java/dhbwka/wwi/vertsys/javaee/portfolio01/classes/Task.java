@@ -174,7 +174,7 @@ public class Task implements Serializable {
         return preistyp;
     }
 
-    public void setPreistyp(Preistyp preistyp) {
+    public void setPreistyp(PreisTyp preistyp) {
         this.preistyp = preistyp;
     }
 //</editor-fold>
