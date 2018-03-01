@@ -75,14 +75,14 @@ public class Task implements Serializable {
     public Task() {
     }
 
-    public Task(Angebotstyp angebotstyp,Preistyp preistyp, Double preis, User owner, Category category, String shortText, String longText, Date dueDate, Time dueTime) {
+    public Task(AngebotsTyp angebotstyp,PreisTyp preistyp, Double preis, User owner, Category category, String shortText, String longText, Date dueDate, Time dueTime) {
         this.owner = owner;
         this.category = category;
         this.shortText = shortText;
         this.longText = longText;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
-        this.angebotstyp= angebotstyp:
+        this.angebotstyp= angebotstyp;
         this.preis = preis;
         this.preistyp = preistyp;
     }
@@ -154,11 +154,11 @@ public class Task implements Serializable {
         this.status = status;
     }
 
-    public Angebotstyp getAngebotstyp() {
+    public AngebotsTyp getAngebotstyp() {
         return angebotstyp;
     }
 
-    public void setAngebotstyp(Angebotstyp angebotstyp) {
+    public void setAngebotstyp(AngebotsTyp angebotstyp) {
         this.angebotstyp = angebotstyp;
     }
 
@@ -170,12 +170,12 @@ public class Task implements Serializable {
         this.preis = preis;
     }
 
-    public String getPreistyp() {
-        return Preistyp;
+    public PreisTyp getPreistyp() {
+        return preistyp;
     }
 
     public void setPreistyp(String Preistyp) {
-        this.Preistyp = Preistyp;
+        this.preistyp = preistyp;
     }
 //</editor-fold>
 }
