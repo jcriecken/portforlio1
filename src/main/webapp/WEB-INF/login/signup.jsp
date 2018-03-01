@@ -73,8 +73,8 @@
                         <span class="required">*</span>
                     </label>  
                     <div>
-                    <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
-                    <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
+                        <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
+                        <input type="text" name="signup_index" value="${signup_form.values["signup_index"][0]}">
                     </div>
                     <%-- Button zum Abschicken --%>
                     <button class="icon-pencil" type="submit">
