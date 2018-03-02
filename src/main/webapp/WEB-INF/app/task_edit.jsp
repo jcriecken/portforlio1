@@ -16,10 +16,10 @@
     <jsp:attribute name="title">
         <c:choose>
             <c:when test="${edit}">
-                Aufgabe bearbeiten
+                Angebot bearbeiten
             </c:when>
             <c:otherwise>
-                Aufgabe anlegen
+                Angebot erstellen
             </c:otherwise>
         </c:choose>
     </jsp:attribute>
@@ -41,10 +41,6 @@
                 <input type="hidden" name="csrf_token" value="${csrf_token}">
 
                 <%-- Eingabefelder --%>
-                <label for="task_owner">Eigentümer:</label>
-                <div class="side-by-side">
-                    <input type="text" name="task_owner" value="${task_form.values["task_owner"][0]}" readonly="readonly">
-                </div>
 
                 <label for="task_category">Kategorie:</label>
                 <div class="side-by-side">
@@ -58,43 +54,17 @@
                         </c:forEach>
                     </select>
                 </div>
-                
+
                 <label for="task_angebotstyp">Art des Angebots:</label>
-                <div class="side-by-side">
-                    <select name="task_angebottyp">
-                        <option value=""></option>
-
-                        <c:forEach items="${angebotstyp}" var="angebotstyp">
-                            <option value="${angebotstyp.id}" ${task_form.values["task_angebotstyp"][0] == angebotstyp.id ? 'selected' : ''}>
-                                <c:out value="${angebotstyp.name}" />
-                            </option>
-                        </c:forEach>
-                    </select>
-                </div>
-
-                <label for="task_due_date">
-                    Fällig am:
-                    <span class="required">*</span>
-                </label>
-                <div class="side-by-side">
-                    <input type="text" name="task_due_date" value="${task_form.values["task_due_date"][0]}">
-                    <input type="text" name="task_due_time" value="${task_form.values["task_due_time"][0]}">
-                </div>
-
-                <label for="task_status">
-                    Status:
-                    <span class="required">*</span>
-                </label>
                 <div class="side-by-side margin">
-                    <select name="task_status">
-                        <c:forEach items="${statuses}" var="status">
-                            <option value="${status}" ${task_form.values["task_status"][0] == status ? 'selected' : ''}>
-                                <c:out value="${status.label}"/>
+                    <select name="task_angebottyp">
+                        <c:forEach items="${angebotstypen}" var="angebotstyp">
+                            <option value="${angebotstyp}" ${task_form.values["task_angebotstyp"][0] == angebotstyp ? 'selected' : ''}>
+                                <c:out value="${angebotstyp.label}" />
                             </option>
                         </c:forEach>
                     </select>
                 </div>
-
                 <label for="task_short_text">
                     Bezeichnung:
                     <span class="required">*</span>
@@ -109,24 +79,22 @@
                 <div class="side-by-side">
                     <textarea name="task_long_text"><c:out value="${task_form.values['task_long_text'][0]}"/></textarea>
                 </div>
-                
-                <label for="task_preistyp">Angebotsart</label>
-                <div class="side-by-side">
-                    <select name="task_preistyp">
-                        <option value=""></option>
 
-                        <c:forEach items="${preistyp}" var="angebotstyp">
-                            <option value="${preistyp.id}" ${task_form.values["task_preistyp"][0] == preistyp.id ? 'selected' : ''}>
-                                <c:out value="${preistyp.name}" />
+                <label for="task_preistyp">Preistyp</label>
+                <div class="side-by-side margin">
+                    <select name="task_preistyp">
+                        <c:forEach items="${preistypen}" var="preistyp">
+                            <option value="${preistyp}" ${task_form.values["task_preistyp"][0] == preistyp ? 'selected' : ''}>
+                                <c:out value="${preistyp.label}" />
                             </option>
                         </c:forEach>
                     </select>
                 </div>
-                
+
                 <label for="task_preis">
                     Preis:
                 </label>
-                <div class="side-by-side">
+                <div class="side-by-side margin">
                     <textarea name="task_preis"><c:out value="${task_form.values['task_preis'][0]}"/></textarea>
                 </div>
 
@@ -144,12 +112,19 @@
                 </div>
             </div>
 
+            <ul>
+                <c:forEach items="${userinfo}" var="info">
+                    <li>${info}</li>
+                    </c:forEach>  
+            </ul>
+
+
             <%-- Fehlermeldungen --%>
             <c:if test="${!empty task_form.errors}">
                 <ul class="errors">
                     <c:forEach items="${task_form.errors}" var="error">
                         <li>${error}</li>
-                    </c:forEach>
+                        </c:forEach>
                 </ul>
             </c:if>
         </form>

@@ -13,13 +13,11 @@ import dhbwka.wwi.vertsys.javaee.portfolio01.beans.CategoryBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.beans.TaskBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.beans.UserBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.beans.ValidationBean;
-import dhbwka.wwi.vertsys.javaee.portfolio01.beans.PreisTypBean;
-import dhbwka.wwi.vertsys.javaee.portfolio01.beans.AngebotsTypBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Task;
-import dhbwka.wwi.vertsys.javaee.portfolio01.classes.TaskStatus;
+import dhbwka.wwi.vertsys.javaee.portfolio01.classes.AngebotsTyp;
+import dhbwka.wwi.vertsys.javaee.portfolio01.classes.PreisTyp;
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,11 +48,7 @@ public class TaskEditServlet extends HttpServlet {
     @EJB
     ValidationBean validationBean;
 
-    @EJB
-    PreisTypBean preistypBean;
-
-    @EJB
-    AngebotsTypBean angebotstypBean;
+ 
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -62,7 +56,8 @@ public class TaskEditServlet extends HttpServlet {
 
         // Verfügbare Kategorien und Stati für die Suchfelder ermitteln
         request.setAttribute("categories", this.categoryBean.findAllSorted());
-        request.setAttribute("statuses", TaskStatus.values());
+        request.setAttribute("angebotstypen", AngebotsTyp.values());
+        request.setAttribute("preistypen", PreisTyp.values());
 
         // Zu bearbeitende Aufgabe einlesen
         HttpSession session = request.getSession();
@@ -75,6 +70,7 @@ public class TaskEditServlet extends HttpServlet {
             // daher Formulardaten aus dem Datenbankobjekt übernehmen
             request.setAttribute("task_form", this.createTaskForm(task));
         }
+        
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/app/task_edit.jsp").forward(request, response);
@@ -120,11 +116,8 @@ public class TaskEditServlet extends HttpServlet {
         List<String> errors = new ArrayList<>();
 
         String taskCategory = request.getParameter("task_category");
-        String taskDueDate = request.getParameter("task_due_date");
-        String taskDueTime = request.getParameter("task_due_time");
-        String taskStatus = request.getParameter("task_status");
         String taskShortText = request.getParameter("task_short_text");
-        String taskLongText = request.getParameter("task_long_text");        
+        String taskLongText = request.getParameter("task_long_text");
         String taskAngebotsTyp = request.getParameter("task_angebotstyp");
         String taskPreisTyp = request.getParameter("task_preistyp");
         String taskPreis = request.getParameter("task_preis");
@@ -138,50 +131,29 @@ public class TaskEditServlet extends HttpServlet {
                 // Ungültige oder keine ID mitgegeben
             }
         }
-        
+
         if (taskAngebotsTyp != null && !taskAngebotsTyp.trim().isEmpty()) {
             try {
-                task.setAngebotstyp(this.angebotstypBean.findById(Long.parseLong(taskAngebotsTyp)));
+                task.setAngebotstyp(AngebotsTyp.valueOf(taskAngebotsTyp));
+            } catch (IllegalArgumentException ex) {
+                errors.add("Der ausgewählte Angebotstyp ist nicht vorhanden.");
+            }
+        }
+
+        if (taskPreisTyp != null && !taskPreisTyp.trim().isEmpty()) {
+            try {
+                task.setPreistyp(PreisTyp.valueOf(taskPreisTyp));
+            } catch (IllegalArgumentException ex) {
+                errors.add("Der ausgewählte Preistyp ist nicht vorhanden.");
+            }
+        }
+
+        if (taskPreis != null && !taskPreis.trim().isEmpty()) {
+            try {
+                task.setPreis(Long.parseLong(taskPreis));
             } catch (NumberFormatException ex) {
                 // Ungültige oder keine ID mitgegeben
             }
-        }
-        
-         if (taskPreisTyp != null && !taskPreisTyp.trim().isEmpty()){
-            try {
-                task.setPreistyp(this.preistypBean.findById(Long.parseLong(taskPreisTyp)));
-            } catch (NumberFormatException ex) {
-                // Ungültige oder keine ID mitgegeben
-            }         
-        }
-         
-         if (taskPreis != null && !taskPreis.trim().isEmpty()){
-            try {
-                task.setPreis(Long.parseLong(taskPreisTyp));
-            } catch (NumberFormatException ex) {
-                // Ungültige oder keine ID mitgegeben
-            }         
-        }
-
-        Date dueDate = WebUtils.parseDate(taskDueDate);
-        Time dueTime = WebUtils.parseTime(taskDueTime);
-
-        if (dueDate != null) {
-            task.setDueDate(dueDate);
-        } else {
-            errors.add("Das Datum muss dem Format dd.mm.yyyy entsprechen.");
-        }
-
-        if (dueTime != null) {
-            task.setDueTime(dueTime);
-        } else {
-            errors.add("Die Uhrzeit muss dem Format hh:mm:ss entsprechen.");
-        }
-
-        try {
-            task.setStatus(TaskStatus.valueOf(taskStatus));
-        } catch (IllegalArgumentException ex) {
-            errors.add("Der ausgewählte Status ist nicht vorhanden.");
         }
 
         task.setShortText(taskShortText);
@@ -202,13 +174,18 @@ public class TaskEditServlet extends HttpServlet {
             // Fehler: Formuler erneut anzeigen
             FormValues formValues = new FormValues();
             formValues.setValues(request.getParameterMap());
-            formValues.setErrors(errors);
+            formValues.setErrors(errors);            
+            List<String> userinfo = this.userBean.getUserInfo(this.userBean.getCurrentUser().getUsername());
+            
 
             HttpSession session = request.getSession();
+            session.setAttribute("userinfo", userinfo);
             session.setAttribute("task_form", formValues);
+            
 
             response.sendRedirect(request.getRequestURI());
         }
+
     }
 
     /**
@@ -243,7 +220,6 @@ public class TaskEditServlet extends HttpServlet {
         Task task = new Task();
         task.setOwner(this.userBean.getCurrentUser());
         task.setDueDate(new Date(System.currentTimeMillis()));
-        task.setDueTime(new Time(System.currentTimeMillis()));
 
         // ID aus der URL herausschneiden
         String taskId = request.getPathInfo();
@@ -294,13 +270,13 @@ public class TaskEditServlet extends HttpServlet {
         values.put("task_due_date", new String[]{
             WebUtils.formatDate(task.getDueDate())
         });
-
-        values.put("task_due_time", new String[]{
-            WebUtils.formatTime(task.getDueTime())
+        
+        values.put("task_angebotstyp", new String[]{
+            task.getAngebotstyp().toString()
         });
 
-        values.put("task_status", new String[]{
-            task.getStatus().toString()
+        values.put("task_preistyp", new String[]{
+            task.getPreistyp().toString()
         });
 
         values.put("task_short_text", new String[]{

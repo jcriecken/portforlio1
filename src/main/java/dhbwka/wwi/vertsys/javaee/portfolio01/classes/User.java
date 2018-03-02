@@ -99,6 +99,18 @@ public class User implements Serializable {
     public String getUsername() {
         return username;
     }
+    public String getRealName() {
+        return realName;
+    }
+    public String getAdress() {
+        return adress;
+    }
+    public String getPostalCode() {
+        return postalCode;
+    }
+     public String getCity() {
+        return city;
+    }
 
     public void setUsername(String id) {
         this.username = id;

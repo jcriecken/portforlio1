@@ -24,7 +24,7 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/app/task/new/"/>">Aufgabe anlegen</a>
+            <a href="<c:url value="/app/task/new/"/>">Angebot erstellen</a>
         </div>
 
         <div class="menuitem">
@@ -47,12 +47,11 @@
                 </c:forEach>
             </select>
 
-            <select name="search_status">
-                <option value="">Alle Stati</option>
-
-                <c:forEach items="${statuses}" var="status">
-                    <option value="${status}" ${param.search_status == status ? 'selected' : ''}>
-                        <c:out value="${status.label}"/>
+            <select name="search_angebotstyp">
+                <option value="">Alle Angebotstypen</option>
+                <c:forEach items="${angebotstypen}" var="angebotstyp">
+                    <option value="${angebotstyp}" ${param.search_angebotstyp == angebotstyp ? 'selected' : ''}>
+                        <c:out value="${angebotstyp.label}"/>
                     </option>
                 </c:forEach>
             </select>
@@ -66,7 +65,7 @@
         <c:choose>
             <c:when test="${empty tasks}">
                 <p>
-                    Es wurden keine Aufgaben gefunden. 🐈
+                    Es wurden keine Angebote gefunden. 🐈
                 </p>
             </c:when>
             <c:otherwise>
@@ -77,9 +76,11 @@
                         <tr>
                             <th>Bezeichnung</th>
                             <th>Kategorie</th>
-                            <th>Eigentümer</th>
-                            <th>Status</th>
-                            <th>Fällig am</th>
+                            <th>Benutzer</th>
+                            <th>Angebotstyp</th>
+                            <th>Preis</th>
+                            <th>Preistyp</th>
+                            <th>Datum</th>
                         </tr>
                     </thead>
                     <c:forEach items="${tasks}" var="task">
@@ -96,11 +97,16 @@
                                 <c:out value="${task.owner.username}"/>
                             </td>
                             <td>
-                                <c:out value="${task.status.label}"/>
+                                <c:out value="${task.angebotstyp.label}"/>
                             </td>
                             <td>
-                                <c:out value="${utils.formatDate(task.dueDate)}"/>
-                                <c:out value="${utils.formatTime(task.dueTime)}"/>
+                                <c:out value="${task.preis}"/>
+                            </td>
+                            <td>
+                                <c:out value="${task.preistyp.label}"/>
+                            </td>
+                            <td>
+                                <c:out value="${utils.formatDate(task.dueDate)}"/>                                
                             </td>
                         </tr>
                     </c:forEach>

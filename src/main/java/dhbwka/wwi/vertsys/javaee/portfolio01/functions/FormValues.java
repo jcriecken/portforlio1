@@ -22,6 +22,7 @@ public class FormValues {
     
     private Map<String, String[]> values = new HashMap<>();
     private List<String> errors = new ArrayList<>();
+   
 
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
     public Map<String, String[]> getValues() {
@@ -45,6 +46,7 @@ public class FormValues {
     public void setErrors(List<String> errors) {
         this.errors = errors;
     }
+  
     //</editor-fold>
     
 }

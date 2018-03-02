@@ -10,6 +10,8 @@
 package dhbwka.wwi.vertsys.javaee.portfolio01.beans;
 
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.User;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJBContext;
@@ -38,6 +40,21 @@ public class UserBean {
         return this.em.find(User.class, this.ctx.getCallerPrincipal().getName());
     }
 
+        /**
+     * @param username Benutzername
+     * @return Alle Aufgaben des Benutzers
+     */
+    public List<String> getUserInfo(String username) {
+        User user = this.em.find(User.class, this.ctx.getCallerPrincipal().getName());
+        List<String> userinfo = new ArrayList<>();
+        userinfo.add(user.getRealName());
+        userinfo.add(user.getAdress());
+        userinfo.add(user.getPostalCode());
+        userinfo.add(user.getCity());        
+        return userinfo;
+    }
+    
+    
     /**
      *
      * @param username
