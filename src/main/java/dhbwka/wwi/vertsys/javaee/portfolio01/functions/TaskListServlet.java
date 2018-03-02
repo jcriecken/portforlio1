@@ -11,6 +11,7 @@ package dhbwka.wwi.vertsys.javaee.portfolio01.functions;
 
 import dhbwka.wwi.vertsys.javaee.portfolio01.beans.CategoryBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.beans.TaskBean;
+import dhbwka.wwi.vertsys.javaee.portfolio01.beans.UserBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Category;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Task;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.AngebotsTyp;
@@ -23,6 +24,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet für die Startseite bzw. jede Seite, die eine Liste der Aufgaben
@@ -36,6 +38,9 @@ public class TaskListServlet extends HttpServlet {
     
     @EJB
     private TaskBean taskBean;
+    
+    @EJB
+    private UserBean userBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -73,6 +78,10 @@ public class TaskListServlet extends HttpServlet {
 
         List<Task> tasks = this.taskBean.search(searchText, category, angebotstyp);
         request.setAttribute("tasks", tasks);
+        List<String> userinfo = this.userBean.getUserInfo(this.userBean.getCurrentUser().getUsername());
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("userinfo", userinfo);
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/app/task_list.jsp").forward(request, response);

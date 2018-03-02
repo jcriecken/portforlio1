@@ -16,10 +16,10 @@
     <jsp:attribute name="title">
         <c:choose>
             <c:when test="${edit}">
-                Aufgabe bearbeiten
+                Angebot bearbeiten
             </c:when>
             <c:otherwise>
-                Aufgabe anlegen
+                Angebot erstellen
             </c:otherwise>
         </c:choose>
     </jsp:attribute>
@@ -40,12 +40,7 @@
                 <%-- CSRF-Token --%>
                 <input type="hidden" name="csrf_token" value="${csrf_token}">
 
-                <%-- Eingabefelder 
-                <label for="task_owner">Eigentümer:</label>
-                <div class="side-by-side">
-                    <input type="text" name="task_owner" value="${task_form.values["task_owner"][0]}" readonly="readonly">
-                </div>
-                --%>
+                <%-- Eingabefelder --%>
 
                 <label for="task_category">Kategorie:</label>
                 <div class="side-by-side">
@@ -70,30 +65,6 @@
                         </c:forEach>
                     </select>
                 </div>
-                <%--
-                <label for="task_due_date">
-                    Fällig am:
-                    <span class="required">*</span>
-                </label>
-                <div class="side-by-side">
-                    <input type="text" name="task_due_date" value="${task_form.values["task_due_date"][0]}">
-                    <input type="text" name="task_due_time" value="${task_form.values["task_due_time"][0]}">
-                </div>
-                <label for="task_status">
-                    Status:
-                    <span class="required">*</span>
-                </label>
-                <div class="side-by-side margin">
-                    <select name="task_status">
-                        <c:forEach items="${statuses}" var="status">
-                            <option value="${status}" ${task_form.values["task_status"][0] == status ? 'selected' : ''}>
-                                <c:out value="${status.label}"/>
-                            </option>
-                        </c:forEach>
-                    </select>
-                </div>
-                --%>
-
                 <label for="task_short_text">
                     Bezeichnung:
                     <span class="required">*</span>
@@ -140,6 +111,13 @@
                     </c:if>
                 </div>
             </div>
+
+            <ul>
+                <c:forEach items="${userinfo}" var="info">
+                    <li>${info}</li>
+                    </c:forEach>  
+            </ul>
+
 
             <%-- Fehlermeldungen --%>
             <c:if test="${!empty task_form.errors}">

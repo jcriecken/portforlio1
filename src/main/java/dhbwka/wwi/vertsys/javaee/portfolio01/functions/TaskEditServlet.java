@@ -18,7 +18,6 @@ import dhbwka.wwi.vertsys.javaee.portfolio01.classes.AngebotsTyp;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.PreisTyp;
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,6 +70,7 @@ public class TaskEditServlet extends HttpServlet {
             // daher Formulardaten aus dem Datenbankobjekt übernehmen
             request.setAttribute("task_form", this.createTaskForm(task));
         }
+        
 
         // Anfrage an die JSP weiterleiten
         request.getRequestDispatcher("/WEB-INF/app/task_edit.jsp").forward(request, response);
@@ -131,7 +131,6 @@ public class TaskEditServlet extends HttpServlet {
                 // Ungültige oder keine ID mitgegeben
             }
         }
-        System.out.println("Kategorie erfolgreich gesetzt");
 
         if (taskAngebotsTyp != null && !taskAngebotsTyp.trim().isEmpty()) {
             try {
@@ -160,8 +159,6 @@ public class TaskEditServlet extends HttpServlet {
         task.setShortText(taskShortText);
         task.setLongText(taskLongText);
 
-        System.out.println("Prameter erfolgreich gesetzt");
-
         this.validationBean.validate(task, errors);
 
         // Datensatz speichern
@@ -177,10 +174,14 @@ public class TaskEditServlet extends HttpServlet {
             // Fehler: Formuler erneut anzeigen
             FormValues formValues = new FormValues();
             formValues.setValues(request.getParameterMap());
-            formValues.setErrors(errors);
+            formValues.setErrors(errors);            
+            List<String> userinfo = this.userBean.getUserInfo(this.userBean.getCurrentUser().getUsername());
+            
 
             HttpSession session = request.getSession();
+            session.setAttribute("userinfo", userinfo);
             session.setAttribute("task_form", formValues);
+            
 
             response.sendRedirect(request.getRequestURI());
         }
