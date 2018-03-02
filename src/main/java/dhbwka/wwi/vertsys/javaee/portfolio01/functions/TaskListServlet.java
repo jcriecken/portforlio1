@@ -13,7 +13,7 @@ import dhbwka.wwi.vertsys.javaee.portfolio01.beans.CategoryBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.beans.TaskBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Category;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Task;
-import dhbwka.wwi.vertsys.javaee.portfolio01.classes.TaskStatus;
+import dhbwka.wwi.vertsys.javaee.portfolio01.classes.AngebotsTyp;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;
@@ -42,16 +42,16 @@ public class TaskListServlet extends HttpServlet {
 
         // Verfügbare Kategorien und Stati für die Suchfelder ermitteln
         request.setAttribute("categories", this.categoryBean.findAllSorted());
-        request.setAttribute("statuses", TaskStatus.values());
+        request.setAttribute("angebotstypen", AngebotsTyp.values());
 
         // Suchparameter aus der URL auslesen
         String searchText = request.getParameter("search_text");
         String searchCategory = request.getParameter("search_category");
-        String searchStatus = request.getParameter("search_status");
+        String searchAngebotstyp = request.getParameter("search_angebotstyp");
 
         // Anzuzeigende Aufgaben suchen
         Category category = null;
-        TaskStatus status = null;
+        AngebotsTyp angebotstyp = null;
 
         if (searchCategory != null) {
             try {
@@ -61,16 +61,16 @@ public class TaskListServlet extends HttpServlet {
             }
         }
 
-        if (searchStatus != null) {
+        if (searchAngebotstyp != null) {
             try {
-                status = TaskStatus.valueOf(searchStatus);
+                angebotstyp = AngebotsTyp.valueOf(searchAngebotstyp);
             } catch (IllegalArgumentException ex) {
-                status = null;
+                angebotstyp = null;
             }
 
         }
 
-        List<Task> tasks = this.taskBean.search(searchText, category, status);
+        List<Task> tasks = this.taskBean.search(searchText, category, angebotstyp);
         request.setAttribute("tasks", tasks);
 
         // Anfrage an die JSP weiterleiten

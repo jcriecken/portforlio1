@@ -59,17 +59,19 @@ public class Task implements Serializable {
     @NotNull(message = "Die Uhrzeit darf nicht leer sein.")
     private Time dueTime;
 
+    /*@Enumerated(EnumType.STRING)
+    @NotNull
+    private TaskStatus status = TaskStatus.KAUFE; */
+
     @Enumerated(EnumType.STRING)
     @NotNull
-    private TaskStatus status = TaskStatus.OPEN;
-
-    @ManyToOne
-    private AngebotsTyp angebotstyp;
+    private AngebotsTyp angebotstyp= AngebotsTyp.KAUFE;
 
     private double preis;
 
-    @ManyToOne
-    private PreisTyp preistyp;
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private PreisTyp preistyp = PreisTyp.FESTPREIS;
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public Task() {
@@ -145,7 +147,7 @@ public class Task implements Serializable {
     public void setDueTime(Time dueTime) {
         this.dueTime = dueTime;
     }
-
+/*
     public TaskStatus getStatus() {
         return status;
     }
@@ -153,6 +155,7 @@ public class Task implements Serializable {
     public void setStatus(TaskStatus status) {
         this.status = status;
     }
+*/
 
     public AngebotsTyp getAngebotstyp() {
         return angebotstyp;

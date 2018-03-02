@@ -12,6 +12,7 @@ package dhbwka.wwi.vertsys.javaee.portfolio01.beans;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Category;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Task;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.TaskStatus;
+import dhbwka.wwi.vertsys.javaee.portfolio01.classes.AngebotsTyp;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
@@ -49,10 +50,10 @@ public class TaskBean extends EntityBean<Task, Long> {
      * 
      * @param search In der Kurzbeschreibung enthaltener Text (optional)
      * @param category Kategorie (optional)
-     * @param status Status (optional)
+     * @param angebotstyp AngebotsTyp (optional)
      * @return Liste mit den gefundenen Aufgaben
      */
-    public List<Task> search(String search, Category category, TaskStatus status) {
+    public List<Task> search(String search, Category category, AngebotsTyp angebotstyp) {
         // Hilfsobjekt zum Bauen des Query
         CriteriaBuilder cb = this.em.getCriteriaBuilder();
         
@@ -73,11 +74,11 @@ public class TaskBean extends EntityBean<Task, Long> {
         if (category != null) {
             query.where(cb.equal(from.get("category"), category));
         }
-        
-        // WHERE t.status = :status
-        if (status != null) {
-            query.where(cb.equal(from.get("status"), status));
-        }
+        /*
+        // WHERE t.angebotstyp = :angebotstyp
+        if (angebotstyp != null) {
+            query.where(cb.equal(from.get("angebotstyp"), angebotstyp));
+        } */
         
         return em.createQuery(query).getResultList();
     }
