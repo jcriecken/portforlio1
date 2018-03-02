@@ -24,7 +24,7 @@
 
     <jsp:attribute name="menu">
         <div class="menuitem">
-            <a href="<c:url value="/app/task/new/"/>">Aufgabe anlegen</a>
+            <a href="<c:url value="/app/task/new/"/>">Angebot erstellen</a>
         </div>
 
         <div class="menuitem">
@@ -65,7 +65,7 @@
         <c:choose>
             <c:when test="${empty tasks}">
                 <p>
-                    Es wurden keine Aufgaben gefunden. 🐈
+                    Es wurden keine Angebote gefunden. 🐈
                 </p>
             </c:when>
             <c:otherwise>
