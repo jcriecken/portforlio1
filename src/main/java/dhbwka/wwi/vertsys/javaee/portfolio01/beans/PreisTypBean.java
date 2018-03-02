@@ -23,7 +23,7 @@ import javax.ejb.Stateless;
 
 
 @Stateless
-@RolesAllowed("todo-app-user")
+@RolesAllowed("allowed-user")
 public class PreisTypBean extends EntityBean<PreisTyp, Long> {
 
     public PreisTypBean() {

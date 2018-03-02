@@ -65,7 +65,7 @@ public class UserBean {
      * @param newPassword
      * @throws UserBean.InvalidCredentialsException
      */
-    @RolesAllowed("todo-app-user")
+    @RolesAllowed("allowed-user")
     public void changePassword(String username, String oldPassword, String newPassword) throws InvalidCredentialsException {
         User user = em.find(User.class, username);
 
