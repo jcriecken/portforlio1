@@ -14,6 +14,7 @@ import dhbwka.wwi.vertsys.javaee.portfolio01.beans.TaskBean;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Category;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Task;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.AngebotsTyp;
+import dhbwka.wwi.vertsys.javaee.portfolio01.classes.PreisTyp;
 import java.io.IOException;
 import java.util.List;
 import javax.ejb.EJB;

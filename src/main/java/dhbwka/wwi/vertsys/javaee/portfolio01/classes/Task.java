@@ -12,6 +12,8 @@ package dhbwka.wwi.vertsys.javaee.portfolio01.classes;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -56,13 +58,6 @@ public class Task implements Serializable {
     @NotNull(message = "Das Datum darf nicht leer sein.")
     private Date dueDate;
 
-    @NotNull(message = "Die Uhrzeit darf nicht leer sein.")
-    private Time dueTime;
-
-    /*@Enumerated(EnumType.STRING)
-    @NotNull
-    private TaskStatus status = TaskStatus.KAUFE; */
-
     @Enumerated(EnumType.STRING)
     @NotNull
     private AngebotsTyp angebotstyp= AngebotsTyp.KAUFE;
@@ -77,13 +72,12 @@ public class Task implements Serializable {
     public Task() {
     }
 
-    public Task(AngebotsTyp angebotstyp,PreisTyp preistyp, Double preis, User owner, Category category, String shortText, String longText, Date dueDate, Time dueTime) {
+    public Task(AngebotsTyp angebotstyp,PreisTyp preistyp, Double preis, User owner, Category category, String shortText, String longText, Date dueDate) {
         this.owner = owner;
         this.category = category;
         this.shortText = shortText;
         this.longText = longText;
-        this.dueDate = dueDate;
-        this.dueTime = dueTime;
+        this.dueDate = Date.valueOf(LocalDate.now());
         this.angebotstyp= angebotstyp;
         this.preis = preis;
         this.preistyp = preistyp;
@@ -140,22 +134,7 @@ public class Task implements Serializable {
         this.dueDate = dueDate;
     }
 
-    public Time getDueTime() {
-        return dueTime;
-    }
 
-    public void setDueTime(Time dueTime) {
-        this.dueTime = dueTime;
-    }
-/*
-    public TaskStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TaskStatus status) {
-        this.status = status;
-    }
-*/
 
     public AngebotsTyp getAngebotstyp() {
         return angebotstyp;

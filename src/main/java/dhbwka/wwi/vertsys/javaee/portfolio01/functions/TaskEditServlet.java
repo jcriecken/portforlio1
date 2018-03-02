@@ -225,7 +225,6 @@ public class TaskEditServlet extends HttpServlet {
         Task task = new Task();
         task.setOwner(this.userBean.getCurrentUser());
         task.setDueDate(new Date(System.currentTimeMillis()));
-        task.setDueTime(new Time(System.currentTimeMillis()));
 
         // ID aus der URL herausschneiden
         String taskId = request.getPathInfo();
@@ -276,11 +275,7 @@ public class TaskEditServlet extends HttpServlet {
         values.put("task_due_date", new String[]{
             WebUtils.formatDate(task.getDueDate())
         });
-
-        values.put("task_due_time", new String[]{
-            WebUtils.formatTime(task.getDueTime())
-        });
-
+        
         values.put("task_angebotstyp", new String[]{
             task.getAngebotstyp().toString()
         });

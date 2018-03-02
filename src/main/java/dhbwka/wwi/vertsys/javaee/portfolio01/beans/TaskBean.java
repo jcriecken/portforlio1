@@ -11,7 +11,6 @@ package dhbwka.wwi.vertsys.javaee.portfolio01.beans;
 //Test Kommentar
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Category;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.Task;
-import dhbwka.wwi.vertsys.javaee.portfolio01.classes.TaskStatus;
 import dhbwka.wwi.vertsys.javaee.portfolio01.classes.AngebotsTyp;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
@@ -37,7 +36,7 @@ public class TaskBean extends EntityBean<Task, Long> {
      * @return Alle Aufgaben des Benutzers
      */
     public List<Task> findByUsername(String username) {
-        return em.createQuery("SELECT t FROM Task t WHERE t.owner.username = :username ORDER BY t.dueDate, t.dueTime")
+        return em.createQuery("SELECT t FROM Task t WHERE t.owner.username = :username ORDER BY t.dueDate")
                  .setParameter("username", username)
                  .getResultList();
     }
@@ -62,8 +61,8 @@ public class TaskBean extends EntityBean<Task, Long> {
         Root<Task> from = query.from(Task.class);
         query.select(from);
 
-        // ORDER BY dueDate, dueTime
-        query.orderBy(cb.asc(from.get("dueDate")), cb.asc(from.get("dueTime")));
+        // ORDER BY dueDate
+        query.orderBy(cb.asc(from.get("dueDate")));
         
         // WHERE t.shortText LIKE :search
         if (search != null && !search.trim().isEmpty()) {
