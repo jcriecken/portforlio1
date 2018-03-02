@@ -64,6 +64,8 @@ public class TaskBean extends EntityBean<Task, Long> {
         // ORDER BY dueDate
         query.orderBy(cb.asc(from.get("dueDate")));
         
+        //Auswahl mehrerer Kriterien ist nicht implementiert
+        
         // WHERE t.shortText LIKE :search
         if (search != null && !search.trim().isEmpty()) {
             query.where(cb.like(from.get("shortText"), "%" + search + "%"));
@@ -73,11 +75,11 @@ public class TaskBean extends EntityBean<Task, Long> {
         if (category != null) {
             query.where(cb.equal(from.get("category"), category));
         }
-        /*
+        
         // WHERE t.angebotstyp = :angebotstyp
         if (angebotstyp != null) {
             query.where(cb.equal(from.get("angebotstyp"), angebotstyp));
-        } */
+        }
         
         return em.createQuery(query).getResultList();
     }

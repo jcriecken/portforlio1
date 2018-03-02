@@ -47,9 +47,8 @@
                 </c:forEach>
             </select>
 
-            <select name="search_status">
-                <option value="">Alle Stati</option>
-
+            <select name="search_angebotstyp">
+                <option value="">Alle Angebotstypen</option>
                 <c:forEach items="${angebotstypen}" var="angebotstyp">
                     <option value="${angebotstyp}" ${param.search_angebotstyp == angebotstyp ? 'selected' : ''}>
                         <c:out value="${angebotstyp.label}"/>
