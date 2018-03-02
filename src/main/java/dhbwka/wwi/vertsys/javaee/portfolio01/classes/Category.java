@@ -8,7 +8,7 @@
  * Creative Commons Namensnennung 4.0 International Lizenz.
  */
 package dhbwka.wwi.vertsys.javaee.portfolio01.classes;
-
+// Komentar
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
